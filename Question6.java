@@ -76,7 +76,6 @@ public class Program{
             }
         }
 
-
         int intkey=0,intvalue=0;
         for(Map.Entry<Integer , Integer> map : hashMap.entrySet()){
             intkey = map.getKey();
@@ -101,3 +100,4 @@ public class Program{
 
     }
 }
+
