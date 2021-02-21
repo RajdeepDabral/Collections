@@ -1,7 +1,7 @@
 /*
-*Q4. Write a program to sort Employee objects based on highest salary using Comparator.
-* Employee class{ Double Age; Double Salary; String Name}.
-* */
+ *Q4. Write a program to sort Employee objects based on highest salary using Comparator.
+ * Employee class{ Double Age; Double Salary; String Name}.
+ * */
 package com.company;
 import java.util.*;
 
@@ -27,25 +27,11 @@ class Employee{
     public Double getAge() {
         return age;
     }
-
-    public void setAge(Double age) {
-        this.age = age;
-    }
-
     public Double getSalary() {
         return salary;
     }
-
-    public void setSalary(Double salary) {
-        this.salary = salary;
-    }
-
     public String getName() {
         return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
     }
 }
 
@@ -60,7 +46,7 @@ class ComparatorHighestSalary implements Comparator<Employee>{
     }
 }
 
-public class Main{
+public class Program{
 
 
     public static void main(String[] args) {
@@ -82,7 +68,6 @@ public class Main{
         while(itr.hasNext()){
             System.out.println((Employee)itr.next());
         }
-
     }
 }
 

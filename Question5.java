@@ -1,7 +1,7 @@
 /*
-*Q5. Write a program to sort the Student objects based on Score , if the score are same then sort on First Name .
-* Class Student{ String Name; Double Score; Double Age.
-* */
+ *Q5. Write a program to sort the Student objects based on Score , if the score are same then sort on First Name .
+ * Class Student{ String Name; Double Score; Double Age.
+ * */
 package com.company;
 import java.util.*;
 
@@ -28,25 +28,11 @@ class Student{
     public Double getAge() {
         return age;
     }
-
-    public void setAge(Double age) {
-        this.age = age;
-    }
-
     public Double getScore() {
         return score;
     }
-
-    public void setScore(Double score) {
-        this.score = score;
-    }
-
     public String getName() {
         return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
     }
 }
 
@@ -63,7 +49,7 @@ class ComparatorHighestSalary implements Comparator<Student>{
     }
 }
 
-public class Main{
+public class Program{
 
 
     public static void main(String[] args) {

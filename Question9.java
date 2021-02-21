@@ -1,29 +1,24 @@
-/*
-*Q9. Write a program to display times in different country format.
-* */
+/* Q9. Write a program to display times in different country format. */
 package com.company;
-import java.text.DateFormat;
-import java.util.*;
+import java.time.LocalTime;
+import java.time.ZoneId;
+import java.time.format.DateTimeFormatter;
+
 public class Main{
     public static void main(String[] args) throws Exception{
-        Date date = new Date();
+        System.out.println("-----Current time of a different time zone using LocalTime-----");
+        ZoneId zoneId = ZoneId.of("America/Los_Angeles");
+        LocalTime localTime=LocalTime.now(zoneId);
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("hh:mm:ss");
+        String formattedTime=localTime.format(formatter);
+        System.out.println("Current time of the day in Los Angeles: " + formattedTime);
 
-        Locale italian = new Locale("it","ch");
-        Locale india = new Locale("hi","IN");
-        Locale poland = new Locale("pl","PL");
-        Locale brazil = new Locale("pt","BR");
 
-        DateFormat df = DateFormat.getDateInstance(DateFormat.FULL, italian);
-        System.out.println("italian: "+ df.format(date));
+        zoneId = ZoneId.of("Asia/Kolkata");
+        localTime=LocalTime.now(zoneId);
+        formatter = DateTimeFormatter.ofPattern("hh:mm:ss");
+        formattedTime=localTime.format(formatter);
+        System.out.println("Current time of the day in India: " + formattedTime);
 
-        df = DateFormat.getDateInstance(DateFormat.FULL, india);
-        System.out.println("india: "+ df.format(date));
-
-        df = DateFormat.getDateInstance(DateFormat.FULL, poland);
-        System.out.println("poland: "+ df.format(date));
-
-        df = DateFormat.getDateInstance(DateFormat.FULL, brazil);
-        System.out.println("brazil: "+ df.format(date));
     }
 }
-

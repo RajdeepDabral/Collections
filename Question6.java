@@ -1,26 +1,71 @@
 /*
-*Q6. Print the elements of an array in the decreasing frequency if 2 numbers have same frequency
-* then print the one which came first.
-* */
+ *Q6. Print the elements of an array in the decreasing frequency if 2 numbers have same frequency
+ * then print the one which came first.
+ * */
 package com.company;
 import java.util.*;
-public class Main{
+
+class NumberFrequency{
+    private int data;
+    private int index;
+    private int frequency;
+
+    public NumberFrequency(int data, int index, int frequency) {
+        this.data = data;
+        this.index = index;
+        this.frequency = frequency;
+    }
+
+    public int getData() {
+        return data;
+    }
+
+    public int getIndex() {
+        return index;
+    }
+
+    public int getFrequency() {
+        return frequency;
+    }
+
+}
+class CompareNumber implements Comparator<NumberFrequency>{
+
+    @Override
+    public int compare(NumberFrequency t1, NumberFrequency t2) {
+        if(t1.getFrequency()>t2.getFrequency()){
+            return -1;
+        }else if(t1.getFrequency()<t2.getFrequency()){
+            return 1;
+        }else{
+            if(t1.getIndex()>t2.getIndex()){
+                return 1;
+            }else if(t1.getIndex()<t2.getIndex()){
+                return -1;
+            }
+        }
+        return 0;
+    }
+}
+
+public class Program{
 
     public static void main(String[] args){
         ArrayList<Integer> arrayList = new ArrayList<>();
-        arrayList.add(5);
-        arrayList.add(5);
-        arrayList.add(2);
-        arrayList.add(9);
+        arrayList.add(7);
         arrayList.add(2);
         arrayList.add(5);
+        arrayList.add(2);
         arrayList.add(8);
-        arrayList.add(4);
-        arrayList.add(4);
         arrayList.add(5);
-        arrayList.add(9);
+        arrayList.add(6);
+        arrayList.add(8);
+        arrayList.add(8);
+
         HashMap<Integer , Integer> hashMap = new HashMap<>();
         int value=0;
+        ArrayList<NumberFrequency> mainlist = new ArrayList<NumberFrequency>();
+
         for(int i=0;i<arrayList.size();i++){
             if(hashMap.containsKey(arrayList.get(i))){
                 value=hashMap.get(arrayList.get(i));
@@ -30,47 +75,29 @@ public class Main{
                 hashMap.put(arrayList.get(i),++value);
             }
         }
+
+
+        int intkey=0,intvalue=0;
         for(Map.Entry<Integer , Integer> map : hashMap.entrySet()){
-            System.out.println(map.getKey()+" : "+map.getValue());
+            intkey = map.getKey();
+            intvalue = map.getValue();
+            System.out.println(intkey+" : "+intvalue);
+            mainlist.add(new NumberFrequency(intkey , arrayList.indexOf(intkey) , intvalue));
         }
+        Collections.sort(mainlist , new CompareNumber());
+        Iterator<NumberFrequency> itr = mainlist.iterator();
+        NumberFrequency demo=null;
 
-        LinkedHashSet<Integer> linkedHashSet = new LinkedHashSet<>();
-        for(int i=0;i<arrayList.size();i++){
-            linkedHashSet.add(arrayList.get(i));
-        }
+        System.out.println();
 
-        Iterator<Integer> itr =linkedHashSet.iterator();
         while(itr.hasNext()){
-            System.out.println(itr.next());
-        }
-
-        int intkey=0; int intvalue=0;
-        LinkedHashMap<Integer , Integer> updatedlinkedHashMap = new LinkedHashMap<Integer , Integer>();
-        for (Map.Entry<Integer, Integer> outer : hashMap.entrySet()) {
-//            System.out.println(outer.getKey()+" : "+outer.getValue());
-              intkey=outer.getKey();
-              intvalue=outer.getValue();
-              int maxkey=0,maxvalue=0;
-            for (Map.Entry<Integer, Integer> inner : hashMap.entrySet()) {
-                if(intkey== inner.getKey() || updatedlinkedHashMap.containsKey(intkey)){
-                    continue;
-                }else{
-                    if(intvalue<=inner.getValue()){
-                        maxkey= inner.getKey();
-                        maxvalue= inner.getValue();
-                    }
-                }
-                //System.out.println(inner.getKey()+" : "+inner.getValue());
-
+            demo=itr.next();
+            for(int i=0;i<demo.getFrequency();i++){
+                System.out.print(demo.getData()+" ");
             }
-            updatedlinkedHashMap.put(maxkey , maxvalue);
         }
 
-        for(Map.Entry<Integer , Integer> updated : updatedlinkedHashMap.entrySet()){
-            System.out.println(updated.getKey()+" : "+updated.getValue());
-        }
+        System.out.println();
 
     }
 }
-
-//2 2 4 4 5 5 5 5 8 9 9
